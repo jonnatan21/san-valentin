@@ -17,7 +17,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             font-family: 'Georgia', serif;
         }
 
@@ -144,6 +145,171 @@
             margin-top: 20px;
         }
 
+        /* Sección carta romántica */
+        .love-letter {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            text-align: left;
+            z-index: 10;
+        }
+
+        .letter-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            max-width: 900px;
+        }
+
+        .letter-text {
+            color: #4a3535;
+            background: linear-gradient(135deg, #fff9f9 0%, #ffe4e8 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 350px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .letter-text h2 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #333;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .letter-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            opacity: 0;
+        }
+
+        .letter-text p:nth-child(2) { animation: fadeIn 1s ease forwards 0.5s; }
+        .letter-text p:nth-child(3) { animation: fadeIn 1s ease forwards 1s; }
+        .letter-text p:nth-child(4) { animation: fadeIn 1s ease forwards 1.5s; }
+
+        .letter-signature {
+            font-style: italic;
+            color: #ff6b9d;
+            font-size: 1.2rem;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2s;
+        }
+
+        /* Árbol de corazones */
+        .heart-tree {
+            position: relative;
+            width: 280px;
+            height: 350px;
+        }
+
+        .tree-trunk {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 80px;
+            background: linear-gradient(90deg, #8B4513, #A0522D, #8B4513);
+            border-radius: 5px;
+        }
+
+        .tree-crown {
+            position: absolute;
+            bottom: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 250px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            animation: treeFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes treeFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .tree-heart {
+            font-size: 1.2rem;
+            margin: 2px;
+            animation: heartPop 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes heartPop {
+            0% { transform: scale(0); opacity: 0; }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Contador */
+        .counter-section {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 2.5s;
+        }
+
+        .counter-title {
+            color: #ff6b9d;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .counter {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .counter-item {
+            text-align: center;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ff4d6d;
+            text-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+        }
+
+        .counter-label {
+            font-size: 0.9rem;
+            color: #ffd1dc;
+        }
+
+        .continue-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(45deg, #ff6b9d, #ff4d6d);
+            color: white;
+            font-family: 'Georgia', serif;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards 3s;
+        }
+
+        .continue-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 77, 109, 0.6);
+        }
+
         /* Corazones flotantes */
         .heart {
             position: fixed;
@@ -182,10 +348,196 @@
             }
         }
 
+        /* Responsive para móviles */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .love-letter {
+                padding: 20px 15px;
+                min-height: auto;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .letter-content {
+                flex-direction: column-reverse;
+                gap: 20px;
+            }
+
+            .letter-text {
+                padding: 25px;
+                max-width: 100%;
+            }
+
+            .letter-text h2 {
+                font-size: 1.1rem;
+            }
+
+            .letter-text p {
+                font-size: 1rem;
+            }
+
+            .heart-tree {
+                width: 200px;
+                height: 250px;
+            }
+
+            .tree-crown {
+                width: 180px;
+                height: 180px;
+                bottom: 50px;
+            }
+
+            .tree-trunk {
+                height: 60px;
+                width: 15px;
+            }
+
+            .tree-heart {
+                font-size: 0.9rem;
+            }
+
+            .counter-section {
+                margin-top: 20px;
+            }
+
+            .counter-title {
+                font-size: 1rem;
+            }
+
+            .counter-number {
+                font-size: 1.8rem;
+            }
+
+            .counter-label {
+                font-size: 0.75rem;
+            }
+
+            .counter {
+                gap: 10px;
+            }
+
+            .continue-btn {
+                margin-top: 25px;
+                padding: 12px 30px;
+                font-size: 1rem;
+            }
+
+            .container {
+                padding: 20px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+                margin-bottom: 20px;
+            }
+
+            .message {
+                font-size: 1rem;
+                margin-bottom: 25px;
+                line-height: 1.6;
+            }
+
+            .question {
+                font-size: 1.4rem;
+                margin-bottom: 25px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 12px 40px;
+                font-size: 1rem;
+            }
+
+            .big-heart {
+                font-size: 8rem;
+            }
+
+            .celebration h1 {
+                font-size: 2rem;
+            }
+
+            .celebration p {
+                font-size: 1.1rem;
+                margin-top: 15px;
+                padding: 0 20px;
+            }
+        }
+
+        /* Para pantallas muy pequeñas */
+        @media screen and (max-width: 380px) {
+            .title {
+                font-size: 1.5rem;
+            }
+
+            .question {
+                font-size: 1.2rem;
+            }
+
+            .counter-number {
+                font-size: 1.5rem;
+            }
+
+            .heart-tree {
+                width: 180px;
+                height: 220px;
+            }
+
+            .tree-crown {
+                width: 160px;
+                height: 160px;
+            }
+        }
+
     </style>
 </head>
 <body>
-    <div class="container" id="main-content">
+    <!-- Sección Carta Romántica -->
+    <div class="love-letter" id="love-letter">
+        <div class="letter-content">
+            <div class="letter-text">
+                <h2>Para el amor de mi vida: 💕</h2>
+                <p>Si pudiera elegir un lugar seguro, sería a tu lado.</p>
+                <p>Cuanto más tiempo estoy contigo, más te amo.</p>
+                <p class="letter-signature">— I Love You! 💖</p>
+            </div>
+            <div class="heart-tree">
+                <div class="tree-crown" id="tree-crown"></div>
+                <div class="tree-trunk"></div>
+            </div>
+        </div>
+        <div class="counter-section">
+            <p class="counter-title">Mi amor por ti comenzó hace... 💕</p>
+            <div class="counter">
+                <div class="counter-item">
+                    <div class="counter-number" id="days">0</div>
+                    <div class="counter-label">días</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="hours">0</div>
+                    <div class="counter-label">horas</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="minutes">0</div>
+                    <div class="counter-label">minutos</div>
+                </div>
+                <div class="counter-item">
+                    <div class="counter-number" id="seconds">0</div>
+                    <div class="counter-label">segundos</div>
+                </div>
+            </div>
+        </div>
+        <button class="continue-btn" onclick="showQuestion()">Continuar 💝</button>
+    </div>
+
+    <!-- Sección Pregunta -->
+    <div class="container" id="main-content" style="display: none;">
         <h1 class="title">💕 BBY (S. Armide) 💕</h1>
         <p class="message">
             Cada día a tu lado es un regalo que atesoro con todo mi corazón. 
@@ -195,7 +547,7 @@
         <h2 class="question">¿Quieres ser mi San Valentín? 💝</h2>
         <div class="buttons">
             <button class="btn btn-yes" onclick="sayYes()">¡Sí! 💖</button>
-            <button class="btn btn-no" onmouseover="moveButton(this)">No 😢</button>
+            <button class="btn btn-no" onmouseover="moveButton(this)" ontouchstart="moveButton(this)">No 😢</button>
         </div>
     </div>
 
@@ -208,6 +560,50 @@
     </div>
 
     <script>
+        // Fecha de inicio de la relación
+        const startDate = new Date('2024-11-18T00:00:00');
+
+        // Actualizar contador
+        function updateCounter() {
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateCounter();
+        setInterval(updateCounter, 1000);
+
+        // Crear árbol de corazones
+        function createHeartTree() {
+            const crown = document.getElementById('tree-crown');
+            const hearts = ['❤️', '💕', '💗', '💖', '💝', '🩷', '♥️'];
+            
+            for (let i = 0; i < 80; i++) {
+                const heart = document.createElement('span');
+                heart.className = 'tree-heart';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.animationDelay = (i * 0.03) + 's';
+                crown.appendChild(heart);
+            }
+        }
+
+        createHeartTree();
+
+        // Mostrar pregunta
+        function showQuestion() {
+            document.getElementById('love-letter').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }
+
         // Crear corazones flotantes de fondo
         function createHeart() {
             const heart = document.createElement('div');
@@ -221,7 +617,9 @@
             setTimeout(() => heart.remove(), 10000);
         }
 
-        setInterval(createHeart, 300);
+        // Menos corazones en móviles para mejor rendimiento
+        const heartInterval = window.innerWidth < 768 ? 500 : 300;
+        setInterval(createHeart, heartInterval);
 
         // Mover el botón "No" cuando pasa el mouse
         function moveButton(btn) {
