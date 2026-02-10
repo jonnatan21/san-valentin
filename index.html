@@ -2,24 +2,37 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💕 Para Ti Mi Amor 💕</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Para Ti Mi Amor</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             min-height: 100vh;
+            min-height: 100dvh;
+            min-height: -webkit-fill-available;
             background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
+            display: -webkit-flex;
             display: flex;
+            -webkit-justify-content: center;
             justify-content: center;
+            -webkit-align-items: center;
             align-items: center;
             overflow-x: hidden;
             overflow-y: auto;
             font-family: 'Georgia', serif;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        html {
+            height: -webkit-fill-available;
         }
 
         .container {
@@ -33,9 +46,14 @@
             color: #ff6b9d;
             text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
             margin-bottom: 30px;
+            -webkit-animation: glow 2s ease-in-out infinite alternate;
             animation: glow 2s ease-in-out infinite alternate;
         }
 
+        @-webkit-keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(255, 107, 157, 0.4); }
+        }
         @keyframes glow {
             from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
             to { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(255, 107, 157, 0.4); }
@@ -48,9 +66,13 @@
             line-height: 1.8;
             margin-bottom: 40px;
             opacity: 0;
+            -webkit-animation: fadeIn 2s ease forwards 1s;
             animation: fadeIn 2s ease forwards 1s;
         }
 
+        @-webkit-keyframes fadeIn {
+            to { opacity: 1; }
+        }
         @keyframes fadeIn {
             to { opacity: 1; }
         }
@@ -60,20 +82,35 @@
             color: #ff4d6d;
             margin-bottom: 30px;
             opacity: 0;
+            -webkit-animation: fadeIn 2s ease forwards 2s, pulse 1.5s ease-in-out infinite 4s;
             animation: fadeIn 2s ease forwards 2s, pulse 1.5s ease-in-out infinite 4s;
         }
 
+        @-webkit-keyframes pulse {
+            0%, 100% { -webkit-transform: scale(1); transform: scale(1); }
+            50% { -webkit-transform: scale(1.05); transform: scale(1.05); }
+        }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            0%, 100% { -webkit-transform: scale(1); transform: scale(1); }
+            50% { -webkit-transform: scale(1.05); transform: scale(1.05); }
         }
 
         .buttons {
+            display: -webkit-flex;
             display: flex;
             gap: 20px;
+            -webkit-justify-content: center;
             justify-content: center;
             opacity: 0;
+            -webkit-animation: fadeIn 2s ease forwards 3s;
             animation: fadeIn 2s ease forwards 3s;
+        }
+
+        /* Fallback para gap en Safari antiguo */
+        @supports not (gap: 20px) {
+            .buttons > * {
+                margin: 0 10px;
+            }
         }
 
         .btn {
@@ -82,8 +119,13 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
+            -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
         }
 
         .btn-yes {
@@ -92,7 +134,9 @@
             box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
         }
 
-        .btn-yes:hover {
+        .btn-yes:hover,
+        .btn-yes:active {
+            -webkit-transform: scale(1.1);
             transform: scale(1.1);
             box-shadow: 0 8px 30px rgba(255, 77, 109, 0.6);
         }
@@ -111,22 +155,34 @@
             font-size: 15rem;
             opacity: 0;
             z-index: 100;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%) scale(0);
+            transform: translate(-50%, -50%) scale(0);
+            -webkit-animation: none;
             animation: none;
         }
 
         .big-heart.show {
+            -webkit-animation: heartBeat 1s ease forwards;
             animation: heartBeat 1s ease forwards;
         }
 
+        @-webkit-keyframes heartBeat {
+            0% { opacity: 0; -webkit-transform: translate(-50%, -50%) scale(0); transform: translate(-50%, -50%) scale(0); }
+            50% { opacity: 1; -webkit-transform: translate(-50%, -50%) scale(1.2); transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 1; -webkit-transform: translate(-50%, -50%) scale(1); transform: translate(-50%, -50%) scale(1); }
+        }
         @keyframes heartBeat {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1.2); }
-            100% { opacity: 1; transform: scale(1); }
+            0% { opacity: 0; -webkit-transform: translate(-50%, -50%) scale(0); transform: translate(-50%, -50%) scale(0); }
+            50% { opacity: 1; -webkit-transform: translate(-50%, -50%) scale(1.2); transform: translate(-50%, -50%) scale(1.2); }
+            100% { opacity: 1; -webkit-transform: translate(-50%, -50%) scale(1); transform: translate(-50%, -50%) scale(1); }
         }
 
         .celebration {
             display: none;
             text-align: center;
+            z-index: 10;
         }
 
         .celebration.show {
@@ -136,6 +192,7 @@
         .celebration h1 {
             font-size: 3rem;
             color: #ff6b9d;
+            -webkit-animation: glow 1s ease-in-out infinite alternate;
             animation: glow 1s ease-in-out infinite alternate;
         }
 
@@ -147,23 +204,39 @@
 
         /* Sección carta romántica */
         .love-letter {
+            display: -webkit-flex;
             display: flex;
+            -webkit-flex-direction: column;
             flex-direction: column;
+            -webkit-align-items: center;
             align-items: center;
+            -webkit-justify-content: center;
             justify-content: center;
             min-height: 100vh;
+            min-height: 100dvh;
+            min-height: -webkit-fill-available;
             padding: 40px 20px;
             text-align: left;
             z-index: 10;
         }
 
         .letter-content {
+            display: -webkit-flex;
             display: flex;
+            -webkit-align-items: center;
             align-items: center;
+            -webkit-justify-content: center;
             justify-content: center;
             gap: 40px;
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
             max-width: 900px;
+        }
+
+        @supports not (gap: 40px) {
+            .letter-content > * {
+                margin: 20px;
+            }
         }
 
         .letter-text {
@@ -180,6 +253,7 @@
             margin-bottom: 20px;
             color: #333;
             opacity: 0;
+            -webkit-animation: fadeIn 1s ease forwards;
             animation: fadeIn 1s ease forwards;
         }
 
@@ -190,15 +264,25 @@
             opacity: 0;
         }
 
-        .letter-text p:nth-child(2) { animation: fadeIn 1s ease forwards 0.5s; }
-        .letter-text p:nth-child(3) { animation: fadeIn 1s ease forwards 1s; }
-        .letter-text p:nth-child(4) { animation: fadeIn 1s ease forwards 1.5s; }
+        .letter-text p:nth-child(2) {
+            -webkit-animation: fadeIn 1s ease forwards 0.5s;
+            animation: fadeIn 1s ease forwards 0.5s;
+        }
+        .letter-text p:nth-child(3) {
+            -webkit-animation: fadeIn 1s ease forwards 1s;
+            animation: fadeIn 1s ease forwards 1s;
+        }
+        .letter-text p:nth-child(4) {
+            -webkit-animation: fadeIn 1s ease forwards 1.5s;
+            animation: fadeIn 1s ease forwards 1.5s;
+        }
 
         .letter-signature {
             font-style: italic;
             color: #ff6b9d;
             font-size: 1.2rem;
             opacity: 0;
+            -webkit-animation: fadeIn 1s ease forwards 2s;
             animation: fadeIn 1s ease forwards 2s;
         }
 
@@ -213,6 +297,7 @@
             position: absolute;
             bottom: 0;
             left: 50%;
+            -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             width: 20px;
             height: 80px;
@@ -224,32 +309,48 @@
             position: absolute;
             bottom: 60px;
             left: 50%;
+            -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
             width: 250px;
             height: 250px;
+            display: -webkit-flex;
             display: flex;
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
+            -webkit-justify-content: center;
             justify-content: center;
+            -webkit-align-items: center;
             align-items: center;
+            -webkit-animation: treeFloat 3s ease-in-out infinite;
             animation: treeFloat 3s ease-in-out infinite;
         }
 
+        @-webkit-keyframes treeFloat {
+            0%, 100% { -webkit-transform: translateX(-50%) translateY(0); transform: translateX(-50%) translateY(0); }
+            50% { -webkit-transform: translateX(-50%) translateY(-10px); transform: translateX(-50%) translateY(-10px); }
+        }
         @keyframes treeFloat {
-            0%, 100% { transform: translateX(-50%) translateY(0); }
-            50% { transform: translateX(-50%) translateY(-10px); }
+            0%, 100% { -webkit-transform: translateX(-50%) translateY(0); transform: translateX(-50%) translateY(0); }
+            50% { -webkit-transform: translateX(-50%) translateY(-10px); transform: translateX(-50%) translateY(-10px); }
         }
 
         .tree-heart {
             font-size: 1.2rem;
             margin: 2px;
+            -webkit-animation: heartPop 0.5s ease forwards;
             animation: heartPop 0.5s ease forwards;
             opacity: 0;
         }
 
+        @-webkit-keyframes heartPop {
+            0% { -webkit-transform: scale(0); transform: scale(0); opacity: 0; }
+            70% { -webkit-transform: scale(1.2); transform: scale(1.2); }
+            100% { -webkit-transform: scale(1); transform: scale(1); opacity: 1; }
+        }
         @keyframes heartPop {
-            0% { transform: scale(0); opacity: 0; }
-            70% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
+            0% { -webkit-transform: scale(0); transform: scale(0); opacity: 0; }
+            70% { -webkit-transform: scale(1.2); transform: scale(1.2); }
+            100% { -webkit-transform: scale(1); transform: scale(1); opacity: 1; }
         }
 
         /* Contador */
@@ -257,6 +358,7 @@
             margin-top: 30px;
             text-align: center;
             opacity: 0;
+            -webkit-animation: fadeIn 1s ease forwards 2.5s;
             animation: fadeIn 1s ease forwards 2.5s;
         }
 
@@ -267,10 +369,19 @@
         }
 
         .counter {
+            display: -webkit-flex;
             display: flex;
             gap: 15px;
+            -webkit-justify-content: center;
             justify-content: center;
+            -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
+        }
+
+        @supports not (gap: 15px) {
+            .counter > * {
+                margin: 0 7px;
+            }
         }
 
         .counter-item {
@@ -300,12 +411,20 @@
             color: white;
             font-family: 'Georgia', serif;
             box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+            -webkit-transition: all 0.3s ease;
             transition: all 0.3s ease;
             opacity: 0;
+            -webkit-animation: fadeIn 1s ease forwards 3s;
             animation: fadeIn 1s ease forwards 3s;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            touch-action: manipulation;
         }
 
-        .continue-btn:hover {
+        .continue-btn:hover,
+        .continue-btn:active {
+            -webkit-transform: scale(1.1);
             transform: scale(1.1);
             box-shadow: 0 8px 30px rgba(255, 77, 109, 0.6);
         }
@@ -314,16 +433,32 @@
         .heart {
             position: fixed;
             font-size: 1.5rem;
+            -webkit-animation: float linear forwards;
             animation: float linear forwards;
             z-index: 1;
+            pointer-events: none;
         }
 
-        @keyframes float {
+        @-webkit-keyframes float {
             0% {
+                -webkit-transform: translateY(100vh) rotate(0deg);
                 transform: translateY(100vh) rotate(0deg);
                 opacity: 1;
             }
             100% {
+                -webkit-transform: translateY(-100vh) rotate(720deg);
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        @keyframes float {
+            0% {
+                -webkit-transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translateY(-100vh) rotate(720deg);
                 transform: translateY(-100vh) rotate(720deg);
                 opacity: 0;
             }
@@ -334,15 +469,31 @@
             position: fixed;
             width: 10px;
             height: 10px;
+            -webkit-animation: confettiFall linear forwards;
             animation: confettiFall linear forwards;
+            pointer-events: none;
         }
 
-        @keyframes confettiFall {
+        @-webkit-keyframes confettiFall {
             0% {
+                -webkit-transform: translateY(-100vh) rotate(0deg);
                 transform: translateY(-100vh) rotate(0deg);
                 opacity: 1;
             }
             100% {
+                -webkit-transform: translateY(100vh) rotate(720deg);
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+        @keyframes confettiFall {
+            0% {
+                -webkit-transform: translateY(-100vh) rotate(0deg);
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translateY(100vh) rotate(720deg);
                 transform: translateY(100vh) rotate(720deg);
                 opacity: 0;
             }
@@ -362,6 +513,7 @@
             }
 
             .letter-content {
+                -webkit-flex-direction: column-reverse;
                 flex-direction: column-reverse;
                 gap: 20px;
             }
@@ -446,13 +598,17 @@
             }
 
             .buttons {
+                -webkit-flex-direction: column;
                 flex-direction: column;
                 gap: 15px;
+                -webkit-align-items: center;
+                align-items: center;
             }
 
             .btn {
                 padding: 12px 40px;
                 font-size: 1rem;
+                min-width: 200px;
             }
 
             .big-heart {
@@ -540,14 +696,14 @@
     <div class="container" id="main-content" style="display: none;">
         <h1 class="title">💕 BBY (S. Armide) 💕</h1>
         <p class="message">
-            Cada día a tu lado es un regalo que atesoro con todo mi corazón. 
+            Cada día a tu lado es un regalo que atesoro con todo mi corazón.
             Tu sonrisa ilumina mi mundo y tu amor me hace la persona más feliz.
             Por eso quiero preguntarte algo muy especial...
         </p>
         <h2 class="question">¿Quieres ser mi San Valentín? 💝</h2>
         <div class="buttons">
             <button class="btn btn-yes" onclick="sayYes()">¡Sí! 💖</button>
-            <button class="btn btn-no" ontouchstart="moveButton(this)">No 😢</button>
+            <button class="btn btn-no" id="btn-no">No 😢</button>
         </div>
     </div>
 
@@ -560,18 +716,18 @@
     </div>
 
     <script>
-        // Fecha de inicio de la relación
-        const startDate = new Date('2024-11-18T00:00:00');
+        // Fecha de inicio de la relación (formato compatible con Safari)
+        var startDate = new Date(2024, 10, 18, 0, 0, 0); // Mes 10 = Noviembre (0-indexed)
 
         // Actualizar contador
         function updateCounter() {
-            const now = new Date();
-            const diff = now - startDate;
+            var now = new Date();
+            var diff = now - startDate;
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            var days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
@@ -582,16 +738,18 @@
         updateCounter();
         setInterval(updateCounter, 1000);
 
-        // Crear árbol de corazones
+        // Crear árbol de corazones (menos en móvil para rendimiento)
         function createHeartTree() {
-            const crown = document.getElementById('tree-crown');
-            const hearts = ['❤️', '💕', '💗', '💖', '💝', '🩷', '♥️'];
-            
-            for (let i = 0; i < 80; i++) {
-                const heart = document.createElement('span');
+            var crown = document.getElementById('tree-crown');
+            var hearts = ['❤️', '💕', '💗', '💖', '💝', '♥️'];
+            var count = window.innerWidth < 768 ? 50 : 80;
+
+            for (var i = 0; i < count; i++) {
+                var heart = document.createElement('span');
                 heart.className = 'tree-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.animationDelay = (i * 0.03) + 's';
+                heart.style.webkitAnimationDelay = (i * 0.03) + 's';
                 crown.appendChild(heart);
             }
         }
@@ -606,60 +764,80 @@
 
         // Crear corazones flotantes de fondo
         function createHeart() {
-            const heart = document.createElement('div');
+            var heart = document.createElement('div');
             heart.className = 'heart';
             heart.innerHTML = ['💕', '💗', '💖', '💝', '❤️', '💘'][Math.floor(Math.random() * 6)];
-            heart.style.left = Math.random() * 100 + 'vw';
+            // Usar % en vez de vw para evitar overflow horizontal
+            heart.style.left = Math.random() * 95 + '%';
             heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            var duration = (Math.random() * 5 + 5) + 's';
+            heart.style.animationDuration = duration;
+            heart.style.webkitAnimationDuration = duration;
             document.body.appendChild(heart);
 
-            setTimeout(() => heart.remove(), 10000);
+            setTimeout(function() { heart.remove(); }, 10000);
         }
 
         // Menos corazones en móviles para mejor rendimiento
-        const heartInterval = window.innerWidth < 768 ? 500 : 300;
+        var heartInterval = window.innerWidth < 768 ? 800 : 300;
         setInterval(createHeart, heartInterval);
 
-        // Mover el botón "No" cuando pasa el mouse
-        function moveButton(btn) {
-            const x = Math.random() * (window.innerWidth - 150);
-            const y = Math.random() * (window.innerHeight - 60);
-            btn.style.position = 'fixed';
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
+        // Mover el botón "No" - funciona con mouse y touch
+        var btnNo = document.getElementById('btn-no');
+
+        function moveButton(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            var maxX = window.innerWidth - 150;
+            var maxY = window.innerHeight - 60;
+            var x = Math.random() * Math.max(maxX, 50);
+            var y = Math.random() * Math.max(maxY, 50);
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = x + 'px';
+            btnNo.style.top = y + 'px';
+            btnNo.style.zIndex = '20';
         }
+
+        btnNo.addEventListener('mouseover', moveButton);
+        btnNo.addEventListener('touchstart', moveButton, { passive: false });
+        btnNo.addEventListener('touchmove', moveButton, { passive: false });
 
         // Cuando dice que sí
         function sayYes() {
             document.getElementById('main-content').style.display = 'none';
-            
-            const bigHeart = document.getElementById('big-heart');
+
+            var bigHeart = document.getElementById('big-heart');
             bigHeart.classList.add('show');
-            
-            // Crear explosión de confeti
-            for (let i = 0; i < 100; i++) {
-                setTimeout(() => createConfetti(), i * 30);
+
+            // Crear explosión de confeti (menos en móvil)
+            var confettiCount = window.innerWidth < 768 ? 50 : 100;
+            for (var i = 0; i < confettiCount; i++) {
+                (function(idx) {
+                    setTimeout(function() { createConfetti(); }, idx * 30);
+                })(i);
             }
 
-            setTimeout(() => {
+            setTimeout(function() {
                 bigHeart.style.display = 'none';
                 document.getElementById('celebration').classList.add('show');
             }, 2000);
         }
 
         function createConfetti() {
-            const confetti = document.createElement('div');
+            var confetti = document.createElement('div');
             confetti.className = 'confetti';
-            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.left = Math.random() * 95 + '%';
             confetti.style.backgroundColor = ['#ff6b9d', '#ff4d6d', '#ffd1dc', '#ffb6c1', '#ff69b4'][Math.floor(Math.random() * 5)];
             confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
-            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            var duration = (Math.random() * 3 + 2) + 's';
+            confetti.style.animationDuration = duration;
+            confetti.style.webkitAnimationDuration = duration;
             document.body.appendChild(confetti);
 
-            setTimeout(() => confetti.remove(), 5000);
+            setTimeout(function() { confetti.remove(); }, 5000);
         }
     </script>
 </body>
 </html>
-
