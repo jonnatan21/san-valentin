@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Para Ti Mi Amor 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a0a0a 0%, #2d1515 50%, #1a0a0a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Georgia', serif;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 40px;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #ff6b9d;
+            text-shadow: 0 0 20px rgba(255, 107, 157, 0.5);
+            margin-bottom: 30px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 107, 157, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 60px rgba(255, 107, 157, 0.4); }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            color: #ffd1dc;
+            max-width: 500px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 1s;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .question {
+            font-size: 2rem;
+            color: #ff4d6d;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 2s, pulse 1.5s ease-in-out infinite 4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 2s ease forwards 3s;
+        }
+
+        .btn {
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn-yes {
+            background: linear-gradient(45deg, #ff6b9d, #ff4d6d);
+            color: white;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 77, 109, 0.6);
+        }
+
+        .btn-no {
+            background: #444;
+            color: #888;
+        }
+
+        .btn-no:hover {
+            position: relative;
+        }
+
+        .big-heart {
+            position: fixed;
+            font-size: 15rem;
+            opacity: 0;
+            z-index: 100;
+            animation: none;
+        }
+
+        .big-heart.show {
+            animation: heartBeat 1s ease forwards;
+        }
+
+        @keyframes heartBeat {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .celebration {
+            display: none;
+            text-align: center;
+        }
+
+        .celebration.show {
+            display: block;
+        }
+
+        .celebration h1 {
+            font-size: 3rem;
+            color: #ff6b9d;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+
+        .celebration p {
+            font-size: 1.5rem;
+            color: #ffd1dc;
+            margin-top: 20px;
+        }
+
+        /* Corazones flotantes */
+        .heart {
+            position: fixed;
+            font-size: 1.5rem;
+            animation: float linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Partículas de celebración */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            animation: confettiFall linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="main-content">
+        <h1 class="title">💕 BBY (S. Armide) 💕</h1>
+        <p class="message">
+            Cada día a tu lado es un regalo que atesoro con todo mi corazón. 
+            Tu sonrisa ilumina mi mundo y tu amor me hace la persona más feliz.
+            Por eso quiero preguntarte algo muy especial...
+        </p>
+        <h2 class="question">¿Quieres ser mi San Valentín? 💝</h2>
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="sayYes()">¡Sí! 💖</button>
+            <button class="btn btn-no" onmouseover="moveButton(this)">No 😢</button>
+        </div>
+    </div>
+
+    <div class="big-heart" id="big-heart">❤️</div>
+
+    <div class="celebration" id="celebration">
+        <h1>¡Te Amo! 💕</h1>
+        <p>¡Gracias por hacer mi vida tan especial!</p>
+        <p>Feliz San Valentín, bby 🌹</p>
+    </div>
+
+    <script>
+        // Crear corazones flotantes de fondo
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = ['💕', '💗', '💖', '💝', '❤️', '💘'][Math.floor(Math.random() * 6)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 10000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Mover el botón "No" cuando pasa el mouse
+        function moveButton(btn) {
+            const x = Math.random() * (window.innerWidth - 150);
+            const y = Math.random() * (window.innerHeight - 60);
+            btn.style.position = 'fixed';
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
+        }
+
+        // Cuando dice que sí
+        function sayYes() {
+            document.getElementById('main-content').style.display = 'none';
+            
+            const bigHeart = document.getElementById('big-heart');
+            bigHeart.classList.add('show');
+            
+            // Crear explosión de confeti
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => createConfetti(), i * 30);
+            }
+
+            setTimeout(() => {
+                bigHeart.style.display = 'none';
+                document.getElementById('celebration').classList.add('show');
+            }, 2000);
+        }
+
+        function createConfetti() {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.backgroundColor = ['#ff6b9d', '#ff4d6d', '#ffd1dc', '#ffb6c1', '#ff69b4'][Math.floor(Math.random() * 5)];
+            confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+            confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            document.body.appendChild(confetti);
+
+            setTimeout(() => confetti.remove(), 5000);
+        }
+    </script>
+</body>
+</html>
